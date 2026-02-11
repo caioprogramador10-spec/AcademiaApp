@@ -1,0 +1,120 @@
+:root {
+    --primary: #00d2ff;
+    --accent: #0072ff;
+    --bg: #0f1016;
+    --surface: #1c1e29;
+    --text: #ffffff;
+    --red: #ff4757;
+    --yellow: #ffa502;
+    --green: #2ed573;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding-bottom: 100px;
+}
+
+header {
+    background: linear-gradient(135deg, #1c1e29 0%, #0f1016 100%);
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2d2f3e;
+}
+
+.logo { font-size: 24px; font-weight: 800; letter-spacing: -1px; }
+.logo span { color: var(--primary); }
+
+.header-stats { display: flex; gap: 15px; }
+.stat-item { text-align: center; background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 12px; transition: 0.3s; }
+.stat-item:active { transform: scale(0.95); background: rgba(255,255,255,0.1); }
+.stat-item span { display: block; font-weight: bold; color: var(--primary); font-size: 18px; }
+.stat-item small { font-size: 10px; color: #888; text-transform: uppercase; }
+
+/* Barra de Alerta de Aniversário */
+#alertaAniversario {
+    animation: slideDown 0.5s ease-out;
+}
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+.toolbar { padding: 15px 0; background: var(--bg); position: sticky; top: 0; z-index: 10; }
+.search-box { background: var(--surface); margin: 0 20px 15px; padding: 12px; border-radius: 15px; display: flex; align-items: center; gap: 10px; }
+.search-box input { background: transparent; border: none; color: white; width: 100%; outline: none; }
+
+.filter-scroll { display: flex; gap: 10px; overflow-x: auto; padding: 0 20px; margin-bottom: 15px; scrollbar-width: none; }
+.filter-scroll::-webkit-scrollbar { display: none; }
+.chip { padding: 10px 20px; border-radius: 25px; border: 1px solid #2d2f3e; background: var(--surface); color: #888; white-space: nowrap; font-size: 13px; font-weight: 600; transition: 0.3s; cursor: pointer; }
+.chip.active { background: var(--primary); color: #000; border-color: var(--primary); }
+
+.btn-bulk-whatsapp { background: #25D366; color: white; border: none; margin: 0 20px; padding: 12px; border-radius: 12px; width: calc(100% - 40px); font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; cursor: pointer; }
+.btn-bulk-whatsapp:active { transform: scale(0.98); opacity: 0.9; }
+
+.container { padding: 20px; }
+
+.card-aluno {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #2d2f3e;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+/* Identifica quem já pagou o mês atual */
+.card-aluno.pago {
+    opacity: 0.6;
+    border-style: dashed;
+}
+
+.card-aluno::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; }
+.card-aluno.atrasado::before { background: var(--red); }
+.card-aluno.a-vencer::before { background: var(--yellow); }
+.card-aluno.em-dia::before { background: var(--green); }
+
+.card-info h3 { margin: 0 0 5px 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.card-info p { margin: 2px 0; font-size: 12px; color: #888; display: flex; align-items: center; gap: 5px; }
+
+.actions-buttons { display: flex; gap: 10px; }
+.btn-circle { width: 40px; height: 40px; border-radius: 12px; border: none; background: #2d2f3e; color: white; display: flex; align-items: center; justify-content: center; transition: 0.3s; cursor: pointer; }
+.btn-circle:active { transform: scale(0.85); background: #3d4052; }
+
+.fab { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; border-radius: 20px; background: var(--primary); border: none; color: #000; font-size: 30px; box-shadow: 0 10px 25px rgba(0,210,255,0.3); z-index: 99; cursor: pointer; }
+
+/* Modal Styles */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); align-items: flex-end; z-index: 1000; }
+.modal-content { background: var(--surface); width: 100%; padding: 30px; border-radius: 30px 30px 0 0; box-sizing: border-box; max-height: 90vh; overflow-y: auto; }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.close-btn { background: transparent; border: none; color: white; cursor: pointer; }
+
+/* Estilos do Histórico */
+.item-historico {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #2d2f3e;
+}
+.item-historico b { color: var(--primary); }
+
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; font-size: 12px; color: #888; margin-bottom: 5px; }
+input, select { width: 100%; padding: 15px; background: #0f1016; border: 1px solid #2d2f3e; border-radius: 12px; color: white; box-sizing: border-box; outline: none; }
+input:focus { border-color: var(--primary); }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.btn-main-action { width: 100%; padding: 18px; border-radius: 15px; border: none; background: var(--primary); color: #000; font-weight: 800; font-size: 16px; margin-top: 10px; transition: 0.3s; cursor: pointer; }
+.btn-main-action:active { transform: scale(0.98); }

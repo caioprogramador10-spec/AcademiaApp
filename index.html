@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymFlow Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <div id="alertaAniversario" style="display:none; background: #0072ff; color: white; padding: 12px; text-align: center; font-size: 14px; font-weight: bold; position: sticky; top: 0; z-index: 100;">
+        🎉 Hoje tem aniversariante! Confira na lista.
+    </div>
+
+    <header>
+        <div class="logo">Caio<span>System</span></div>
+        <div class="header-stats">
+            <div class="stat-item" onclick="abrirRelatorioHistorico()" style="cursor:pointer">
+                <span id="faturamentoMensal">R$ 0</span>
+                <small>Faturamento 📊</small>
+            </div>
+            <div class="stat-item">
+                <span id="countAlunos">0</span>
+                <small>Alunos</small>
+            </div>
+        </div>
+    </header>
+
+    <section class="toolbar">
+        <div class="search-box">
+            <span class="material-icons">search</span>
+            <input type="text" id="inputBusca" placeholder="Buscar aluno..." onkeyup="renderizar()">
+        </div>
+        
+        <div class="filter-scroll">
+            <button onclick="filtrarStatus('todos')" class="chip active">Todos</button>
+            <button onclick="filtrarStatus('atrasado')" class="chip color-red">Atrasados</button>
+            <button onclick="filtrarStatus('a-vencer')" class="chip color-yellow">Vence Amanhã</button>
+            <button onclick="filtrarStatus('em-dia')" class="chip color-green">Em Dia</button>
+        </div>
+
+        <button class="btn-bulk-whatsapp" onclick="enviarCobrancaGeral()">
+            <span class="material-icons">group</span> Cobrar Vencimentos de Amanhã
+        </button>
+    </section>
+
+    <main id="listaAlunos" class="container"></main>
+
+    <button class="fab" onclick="abrirModal()">
+        <span class="material-icons">add</span>
+    </button>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitulo">Ficha do Aluno</h2>
+                <button onclick="fecharModal()" class="close-btn"><span class="material-icons">close</span></button>
+            </div>
+            
+            <input type="hidden" id="alunoId">
+            <div class="input-group">
+                <label>Nome do Aluno</label>
+                <input type="text" id="nome" placeholder="Ex: João Silva">
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <label>WhatsApp</label>
+                    <input type="tel" id="whatsapp" placeholder="21999999999">
+                </div>
+                <div class="input-group">
+                    <label>Nascimento</label>
+                    <input type="date" id="nascimento">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <label>Vencimento</label>
+                    <input type="date" id="dataVenc">
+                </div>
+                <div class="input-group">
+                    <label>Valor (R$)</label>
+                    <input type="number" id="valor" placeholder="100">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group">
+                    <label>Plano</label>
+                    <select id="plano">
+                        <option value="1">Mensal</option>
+                        <option value="3">Trimestral</option>
+                        <option value="6">Semestral</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Pagamento</label>
+                    <select id="pagamento">
+                        <option value="Pix">Pix</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Cartão">Cartão</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="salvarAluno()" class="btn-main-action">Salvar Cadastro</button>
+        </div>
+    </div>
+
+    <div id="modalRelatorio" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Histórico e Dados</h2>
+                <button onclick="fecharRelatorio()" class="close-btn"><span class="material-icons">close</span></button>
+            </div>
+            <div id="listaHistorico" style="max-height: 250px; overflow-y: auto; margin: 15px 0;"></div>
+            
+            <div class="row" style="gap: 10px; margin-bottom: 15px;">
+                <button onclick="exportarBackup()" class="chip" style="flex:1; background:#30363d; color:white; border:none; display:flex; justify-content:center; align-items:center; gap:5px;">
+                    <span class="material-icons" style="font-size:18px">download</span> Backup
+                </button>
+                <button onclick="importarBackup()" class="chip" style="flex:1; background:#30363d; color:white; border:none; display:flex; justify-content:center; align-items:center; gap:5px;">
+                    <span class="material-icons" style="font-size:18px">upload</span> Restaurar
+                </button>
+            </div>
+            
+            <button onclick="fecharRelatorio()" class="btn-main-action">Fechar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
