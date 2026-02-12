@@ -1,6 +1,6 @@
 // --- CONFIGURAÇÃO SUPABASE (CONEXÃO NUVEM) ---
 const _URL = "https://aeknsntfkaghrwdekpsz.supabase.co";
-const _KEY = "sb_publishable_R5QOqLR_fSd991RgCLJYXQ_qF7JB9ma";
+const _KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFla25zbnRma2FnaHJ3ZGVrcHN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA4NTcwNjEsImV4cCI6MjA4NjQzMzA2MX0.jgrfGQdbB7sbIZSOWeLN48qauhWjk6CyAdv8ke3h5EU";
 const _supabase = supabase.createClient(_URL, _KEY);
 
 let filtroStatusAtual = 'todos';
